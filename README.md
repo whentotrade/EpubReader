@@ -1,5 +1,5 @@
 # Changes to original/forked version:
-- added a stream openbook version with option to leave the stream open after user (leaveOpen)
+- added a stream openbook version with option to leave the stream open after use (leaveOpen)
 
 
 ```EpubBook book = EpubReader.ReadBook(sourceStream, leaveOpen: true);```
