@@ -1,18 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net46;netcoreapp1.0;netstandard1.3</TargetFrameworks>
-        <Authors>vers</Authors>
-        <Company />
-        <Product />
-        <Description />
-        <Copyright>vers, 2015-2019</Copyright>
-        <Version>3.0.1</Version>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="System.IO.Compression" Version="4.3.0" />
-        <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
-        <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
-        <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net472;netcoreapp1.0;netstandard1.3</TargetFrameworks>
+    <Authors>vers</Authors>
+    <Company />
+    <Product />
+    <Description />
+    <Copyright>vers, 2015-2019</Copyright>
+    <Version>3.0.1</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>VersOne.Epub</PackageId>
+    <PackageProjectUrl>https://github.com/vers-one/EpubReader</PackageProjectUrl>
+    <PackageReleaseNotes>Better EPUB 3 support, fix for reading play order attribute in EPUB 2. Has breaking changes. For migration instruction please refer to https://github.com/vers-one/EpubReader/wiki/Migrating-from-2.x-to-3.x </PackageReleaseNotes>
+    <PackageTags>epub</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IO.Compression" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+  </ItemGroup>
 </Project>

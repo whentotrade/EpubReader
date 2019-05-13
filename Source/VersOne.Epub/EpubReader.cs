@@ -31,6 +31,16 @@ namespace VersOne.Epub
         }
 
         /// <summary>
+        /// Opens the book synchronously without reading its whole content.
+        /// </summary>
+        /// <param name="stream">seekable stream containing the EPUB file</param>
+        /// <returns></returns>
+        public static EpubBookRef OpenBook(Stream stream, bool leaveOpen)
+        {
+            return OpenBookAsync(stream, leaveOpen).Result;
+        }
+
+        /// <summary>
         /// Opens the book asynchronously without reading its whole content. Holds the handle to the EPUB file.
         /// </summary>
         /// <param name="filePath">path to the EPUB file</param>
@@ -55,6 +65,16 @@ namespace VersOne.Epub
         }
 
         /// <summary>
+        /// Opens the book asynchronously without reading its whole content.
+        /// </summary>
+        /// <param name="stream">seekable stream containing the EPUB file</param>
+        /// <returns></returns>
+        public static Task<EpubBookRef> OpenBookAsync(Stream stream, bool leaveOpen)
+        {
+            return OpenBookAsync(GetZipArchive(stream, leaveOpen));
+        }
+
+        /// <summary>
         /// Opens the book synchronously and reads all of its content into the memory. Does not hold the handle to the EPUB file.
         /// </summary>
         /// <param name="filePath">path to the EPUB file</param>
@@ -72,6 +92,15 @@ namespace VersOne.Epub
         public static EpubBook ReadBook(Stream stream)
         {
             return ReadBookAsync(stream).Result;
+        }
+        /// <summary>
+        /// Opens the book synchronously and reads all of its content into the memory.
+        /// </summary>
+        /// <param name="stream">seekable stream containing the EPUB file</param>
+        /// <returns></returns>
+        public static EpubBook ReadBook(Stream stream, bool leaveOpen)
+        {
+            return ReadBookAsync(stream, leaveOpen).Result;
         }
 
         /// <summary>
@@ -93,6 +122,18 @@ namespace VersOne.Epub
         public static async Task<EpubBook> ReadBookAsync(Stream stream)
         {
             EpubBookRef epubBookRef = await OpenBookAsync(stream).ConfigureAwait(false);
+            return await ReadBookAsync(epubBookRef).ConfigureAwait(false);
+        }
+
+
+        /// <summary>
+        /// Opens the book asynchronously and reads all of its content into the memory.
+        /// </summary>
+        /// <param name="stream">seekable stream containing the EPUB file</param>
+        /// <returns></returns>
+        public static async Task<EpubBook> ReadBookAsync(Stream stream, bool leaveOpen)
+        {
+            EpubBookRef epubBookRef = await OpenBookAsync(stream, leaveOpen).ConfigureAwait(false);
             return await ReadBookAsync(epubBookRef).ConfigureAwait(false);
         }
 
@@ -145,6 +186,11 @@ namespace VersOne.Epub
         private static ZipArchive GetZipArchive(Stream stream)
         {
             return new ZipArchive(stream, ZipArchiveMode.Read);
+        }
+
+        private static ZipArchive GetZipArchive(Stream stream, bool leaveOpen)
+        {
+            return new ZipArchive(stream, ZipArchiveMode.Read, leaveOpen);
         }
 
         private static async Task<EpubContent> ReadContent(EpubContentRef contentRef)
