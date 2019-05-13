@@ -1,3 +1,6 @@
+# Changes to original version:
+- added a stream openbook version with option to leave the stream open after user (leaveOpen)
+
 # EpubReader
 .NET library for reading EPUB files.
 
