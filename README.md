@@ -2,7 +2,10 @@
 - added a stream openbook version with option to leave the stream open after use (leaveOpen)
 
 
-```EpubBook book = EpubReader.ReadBook(sourceStream, leaveOpen: true);```
+```csharp
+EpubBook book = EpubReader.ReadBook(sourceStream, leaveOpen: true);
+```
+
 
 # EpubReader
 .NET library for reading EPUB files.
