@@ -1,5 +1,6 @@
-# Changes to original version:
+# Changes to original/forked version:
 - added a stream openbook version with option to leave the stream open after user (leaveOpen)
+example: EpubBook book = EpubReader.ReadBook(sourceStream, leaveOpen: true);
 
 # EpubReader
 .NET library for reading EPUB files.
